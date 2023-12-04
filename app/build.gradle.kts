@@ -24,3 +24,7 @@ tasks.test {
 application {
     mainClass.set("hexlet.code.App")
 }
+
+tasks.compileJava {
+    options.release = 20
+}
