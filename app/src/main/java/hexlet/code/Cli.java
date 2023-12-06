@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Cli {
     private static String username;
 
+    public static String getUsername() {
+        return username;
+    }
+
     public static void welcome() {
         Scanner scanner = new Scanner(System.in);
 
