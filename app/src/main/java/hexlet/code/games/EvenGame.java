@@ -31,11 +31,11 @@ public class EvenGame implements Game {
         return new ResultCheckAnswer(rightAnswer, isRightAnswer);
     }
 
-    private static String getRightAnswer(int guessedNumber) {
-        return guessedNumber % 2 == 0 ? YES_ANSWER : NO_ANSWER;
+    private String getRightAnswer(int number) {
+        return number % 2 == 0 ? YES_ANSWER : NO_ANSWER;
     }
 
-    private static boolean checkAnswer(String answer, String rightAnswer) {
+    private boolean checkAnswer(String answer, String rightAnswer) {
         return rightAnswer.equals(answer);
     }
 }

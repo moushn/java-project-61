@@ -30,8 +30,10 @@ public class App {
                 break;
             case 3:
                 Engine.runGame(new CalcGame());
+                break;
             case 4:
                 Engine.runGame(new GCDGame());
+                break;
             default:
                 break;
         }

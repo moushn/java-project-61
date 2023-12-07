@@ -26,9 +26,9 @@ public class GCDGame implements Game {
         return new ResultCheckAnswer(String.valueOf(rightAnswer), isRightAnswer);
     }
 
-    private static int getRightAnswer(int guessedNumber1, int guessedNumber2) {
-        int min = Math.min(guessedNumber1, guessedNumber2);
-        int max = Math.max(guessedNumber1, guessedNumber2);
+    private int getRightAnswer(int number1, int number2) {
+        int min = Math.min(number1, number2);
+        int max = Math.max(number1, number2);
         int gcd;
         do {
             gcd = max % min;
@@ -38,7 +38,7 @@ public class GCDGame implements Game {
         return max;
     }
 
-    private static boolean checkAnswer(int answer, int rightAnswer) {
+    private boolean checkAnswer(int answer, int rightAnswer) {
         return rightAnswer == answer;
     }
 }

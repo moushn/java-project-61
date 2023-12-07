@@ -29,13 +29,13 @@ public class CalcGame implements Game {
         return new ResultCheckAnswer(String.valueOf(rightAnswer), isRightAnswer);
     }
 
-    private static int getRightAnswer(int guessedNumber1, int guessedNumber2, String guessedOperator) {
-        return guessedOperator.equals("-")
-                ? guessedNumber1 - guessedNumber2
-                : guessedNumber1 + guessedNumber2;
+    private int getRightAnswer(int number1, int number2, String operator) {
+        return operator.equals("-")
+                ? number1 - number2
+                : number1 + number2;
     }
 
-    private static boolean checkAnswer(int answer, int rightAnswer) {
+    private boolean checkAnswer(int answer, int rightAnswer) {
         return rightAnswer == answer;
     }
 }
