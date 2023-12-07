@@ -1,9 +1,12 @@
 package hexlet.code;
 
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.EvenGame;
+
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {  //TODO разбить по пакетам
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choosenMenuItem;
 
@@ -21,12 +24,10 @@ public class App {
                 Cli.welcome();
                 break;
             case 2:
-                Cli.welcome();
-                EvenGame.start();
+                Engine.runGame(new EvenGame());
                 break;
             case 3:
-                Cli.welcome();
-                CalcGame.start();
+                Engine.runGame(new CalcGame());
             default:
                 break;
         }
