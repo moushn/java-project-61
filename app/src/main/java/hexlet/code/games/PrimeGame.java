@@ -10,7 +10,7 @@ public class PrimeGame implements Game {
     private static final String YES_ANSWER = "yes";
     private static final String NO_ANSWER = "no";
     private static final String TASK = "Answer '" + YES_ANSWER
-            + "' if given number is prime, otherwise answer '"
+            + "' if given number is prime. Otherwise answer '"
             + NO_ANSWER + "'.";
     private int guessedNumber;
 
