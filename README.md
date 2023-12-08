@@ -8,3 +8,4 @@ https://asciinema.org/a/A0LKLVv0pUv9S4cuIejTssM0W - Even game
 https://asciinema.org/a/Ee4Xb0EqykoyDLZrlQoN2Djlf - Calc game
 https://asciinema.org/a/YNh675iMJWgMIzB0JYOgzBqWI - GCD game
 https://asciinema.org/a/rQ9A6W5GElRjGKVgCnrpi1QVA - Progression game
+https://asciinema.org/a/LHzMSxerBOc7Mpvv7TeL569X0 - Prime game
