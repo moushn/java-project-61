@@ -3,11 +3,11 @@ package hexlet.code.games;
 import java.util.Random;
 import java.util.StringJoiner;
 
-public class ProgressionGame implements Game {
+public final class ProgressionGame implements Game {
     private static final int MAX_FIRST_NUM = 20;
     private static final int MAX_PROGRESSION_LENGTH = 10;
     private static final int MIN_PROGRESSION_LENGTH = 5;
-    private static final int PROGRESSION_STEP_COEFFICIENT = 2;
+    private static final int PROGRESSION_STEP_COEFFICIENT = 3;
     private static final String TASK = "What number is missing in the progression?";
     private static final String HIDDEN_ELEMENT = "..";
     private int guessedElement;
@@ -25,9 +25,9 @@ public class ProgressionGame implements Game {
         return castProgressionToQuestion(progression, guessedIndex);
     }
 
-    public ResultCheckAnswer postAnswer(String answer) {
+    public CheckAnswerResult postAnswer(String answer) {
         boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), guessedElement);
-        return new ResultCheckAnswer(String.valueOf(guessedElement), isRightAnswer);
+        return new CheckAnswerResult(String.valueOf(guessedElement), isRightAnswer);
     }
 
     private boolean checkAnswer(int answer, int rightAnswer) {

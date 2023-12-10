@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import java.util.Random;
 
-public class GCDGame implements Game {
+public final class GCDGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
     private static final String TASK = "Find the greatest common divisor of given numbers.";
     private int guessedNumber1;
@@ -20,10 +20,10 @@ public class GCDGame implements Game {
         return guessedNumber1 + " " + guessedNumber2;
     }
 
-    public ResultCheckAnswer postAnswer(String answer) {
+    public CheckAnswerResult postAnswer(String answer) {
         int rightAnswer = getRightAnswer(guessedNumber1, guessedNumber2);
         boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), rightAnswer);
-        return new ResultCheckAnswer(String.valueOf(rightAnswer), isRightAnswer);
+        return new CheckAnswerResult(String.valueOf(rightAnswer), isRightAnswer);
     }
 
     private int getRightAnswer(int number1, int number2) {

@@ -1,12 +1,12 @@
 package hexlet.code.games;
 
-public class ResultCheckAnswer {
+public final class CheckAnswerResult {
     private final String rightAnswer;
     private final boolean isRightAnswer;
 
-    public ResultCheckAnswer(String rightAnswer, boolean isRightAnswer) {
-        this.rightAnswer = rightAnswer;
-        this.isRightAnswer = isRightAnswer;
+    public CheckAnswerResult(String pRightAnswer, boolean pIsRightAnswer) {
+        this.rightAnswer = pRightAnswer;
+        this.isRightAnswer = pIsRightAnswer;
     }
 
     public String getRightAnswer() {

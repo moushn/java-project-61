@@ -9,39 +9,47 @@ import hexlet.code.games.ProgressionGame;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int choosenMenuItem;
-
-        System.out.println("Please enter the game number and press Enter.");
-        System.out.println("""
+    private static final int GREET_NUMBER = 1;
+    private static final int EVEN_GAME_NUMBER = 2;
+    private static final int CALC_GAME_NUMBER = 3;
+    private static final int GCD_GAME_NUMBER = 4;
+    private static final int PROGRESSION_GAME_NUMBER = 5;
+    private static final int PRIME_GAME_NUMBER = 6;
+    private static final String MENU = """
                 1 - Greet
                 2 - Even
                 3 - Calc
                 4 - GCD
                 5 - Progression
                 6 - Prime
-                0 - Exit""");
+                0 - Exit""";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choosenMenuItem;
+
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println(MENU);
         System.out.print("Your choice: ");
 
         choosenMenuItem = scanner.nextInt();
         switch (choosenMenuItem) {
-            case 1:
+            case GREET_NUMBER:
                 Cli.welcome();
                 break;
-            case 2:
+            case EVEN_GAME_NUMBER:
                 Engine.runGame(new EvenGame());
                 break;
-            case 3:
+            case CALC_GAME_NUMBER:
                 Engine.runGame(new CalcGame());
                 break;
-            case 4:
+            case GCD_GAME_NUMBER:
                 Engine.runGame(new GCDGame());
                 break;
-            case 5:
+            case PROGRESSION_GAME_NUMBER:
                 Engine.runGame(new ProgressionGame());
                 break;
-            case 6:
+            case PRIME_GAME_NUMBER:
                 Engine.runGame(new PrimeGame());
             default:
                 break;

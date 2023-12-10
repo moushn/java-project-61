@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import java.util.Random;
 
-public class CalcGame implements Game {
+public final class CalcGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
     private static final int GUESSES_OPERATORS_COUNT = 2;
     private static final String TASK = "What is the result of the expression?";
@@ -23,10 +23,10 @@ public class CalcGame implements Game {
         return guessedNumber1 + " " + (guessedOperator) + " " + guessedNumber2;
     }
 
-    public ResultCheckAnswer postAnswer(String answer) {
+    public CheckAnswerResult postAnswer(String answer) {
         int rightAnswer = getRightAnswer(guessedNumber1, guessedNumber2, guessedOperator);
         boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), rightAnswer);
-        return new ResultCheckAnswer(String.valueOf(rightAnswer), isRightAnswer);
+        return new CheckAnswerResult(String.valueOf(rightAnswer), isRightAnswer);
     }
 
     private int getRightAnswer(int number1, int number2, String operator) {

@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.games.Game;
-import hexlet.code.games.ResultCheckAnswer;
+import hexlet.code.games.CheckAnswerResult;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class Engine {
 
     public static void runGame(Game game) {
         String answer;
-        ResultCheckAnswer resultCheckAnswer;
+        CheckAnswerResult checkAnswerResult;
         Scanner scanner = new Scanner(System.in);
 
         Cli.welcome();
@@ -19,23 +19,23 @@ public class Engine {
             System.out.println("Question: " + game.getQuestion());
             System.out.print("Your answer: ");
             answer = scanner.next();
-            resultCheckAnswer = game.postAnswer(answer);
-            System.out.println(dialogSupporter(answer, resultCheckAnswer, i));
-            if (!resultCheckAnswer.isRightAnswer()) {
+            checkAnswerResult = game.postAnswer(answer);
+            System.out.println(dialogSupporter(answer, checkAnswerResult, i));
+            if (!checkAnswerResult.isRightAnswer()) {
                 break;
             }
         }
     }
 
     private static String dialogSupporter(String answer,
-                                          ResultCheckAnswer resultCheckAnswer,
+                                          CheckAnswerResult checkAnswerResult,
                                           int step) {
-        String resultCheckInfo = resultCheckAnswer.isRightAnswer()
+        String resultCheckInfo = checkAnswerResult.isRightAnswer()
                 ? "Correct!"
                 : "'" + answer + "' is wrong answer ;(. Correct answer was '"
-                + resultCheckAnswer.getRightAnswer() + "'.\n"
+                + checkAnswerResult.getRightAnswer() + "'.\n"
                 + "Let's try again, " + Cli.getUsername() + "!";
-        if (resultCheckAnswer.isRightAnswer() && step == ROUND_COUNT - 1) {
+        if (checkAnswerResult.isRightAnswer() && step == ROUND_COUNT - 1) {
             resultCheckInfo += "\nCongratulations, " + Cli.getUsername() + "!";
         }
         return resultCheckInfo;

@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import java.util.Random;
 
-public class EvenGame implements Game {
+public final class EvenGame implements Game {
 
     private static final int MAX_NUMBER_GUESS = 100;
     private static final String YES_ANSWER = "yes";
@@ -25,10 +25,10 @@ public class EvenGame implements Game {
     }
 
     @Override
-    public ResultCheckAnswer postAnswer(String answer) {
+    public CheckAnswerResult postAnswer(String answer) {
         String rightAnswer = getRightAnswer(guessedNumber);
         boolean isRightAnswer = checkAnswer(answer, rightAnswer);
-        return new ResultCheckAnswer(rightAnswer, isRightAnswer);
+        return new CheckAnswerResult(rightAnswer, isRightAnswer);
     }
 
     private String getRightAnswer(int number) {

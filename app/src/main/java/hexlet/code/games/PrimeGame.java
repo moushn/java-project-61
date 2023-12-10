@@ -3,7 +3,7 @@ package hexlet.code.games;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class PrimeGame implements Game {
+public final class PrimeGame implements Game {
 
 
     private static final int MAX_NUMBER_GUESS = 100;
@@ -27,10 +27,10 @@ public class PrimeGame implements Game {
     }
 
     @Override
-    public ResultCheckAnswer postAnswer(String answer) {
+    public CheckAnswerResult postAnswer(String answer) {
         String rightAnswer = getRightAnswer(guessedNumber);
         boolean isRightAnswer = checkAnswer(answer, rightAnswer);
-        return new ResultCheckAnswer(rightAnswer, isRightAnswer);
+        return new CheckAnswerResult(rightAnswer, isRightAnswer);
     }
 
     private String getRightAnswer(int number) {

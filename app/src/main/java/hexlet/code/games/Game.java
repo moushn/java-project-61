@@ -5,5 +5,5 @@ public interface Game {
 
     String getQuestion();
 
-    ResultCheckAnswer postAnswer(String answer);
+    CheckAnswerResult postAnswer(String answer);
 }
