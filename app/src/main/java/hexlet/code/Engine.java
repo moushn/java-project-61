@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.games.Game;
-import hexlet.code.games.CheckAnswerResult;
+import hexlet.code.games.RoundData;
 
 import java.util.Scanner;
 
@@ -10,34 +10,52 @@ public class Engine {
 
     public static void runGame(Game game) {
         String answer;
-        CheckAnswerResult checkAnswerResult;
+        boolean result;
+        RoundData roundData;
         Scanner scanner = new Scanner(System.in);
 
-        Cli.welcome();
-        System.out.println(game.getTask());
+        String username = welcome();
+        System.out.println(game.getRule());
         for (int i = 0; i < ROUND_COUNT; i += 1) {
-            System.out.println("Question: " + game.getQuestion());
+            roundData = game.generateRound();
+            System.out.println("Question: " + roundData.question());
             System.out.print("Your answer: ");
             answer = scanner.next();
-            checkAnswerResult = game.postAnswer(answer);
-            System.out.println(dialogSupporter(answer, checkAnswerResult, i));
-            if (!checkAnswerResult.isRightAnswer()) {
+            result = checkAnswer(answer, roundData.rightAnswer());
+            System.out.println(dialogSupporter(answer, roundData.rightAnswer(), result, username, i));
+            if (!result) {
                 break;
             }
         }
     }
 
+    private static String welcome() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Brain Games!");
+        System.out.print("May I have your name? ");
+        String username = scanner.next();
+        System.out.println("Hello, " + username + "!");
+        return username;
+    }
+
     private static String dialogSupporter(String answer,
-                                          CheckAnswerResult checkAnswerResult,
+                                          String rightAnswer,
+                                          boolean isRightAnswer,
+                                          String username,
                                           int step) {
-        String resultCheckInfo = checkAnswerResult.isRightAnswer()
+        String resultCheckInfo = isRightAnswer
                 ? "Correct!"
                 : "'" + answer + "' is wrong answer ;(. Correct answer was '"
-                + checkAnswerResult.getRightAnswer() + "'.\n"
-                + "Let's try again, " + Cli.getUsername() + "!";
-        if (checkAnswerResult.isRightAnswer() && step == ROUND_COUNT - 1) {
-            resultCheckInfo += "\nCongratulations, " + Cli.getUsername() + "!";
+                + rightAnswer + "'.\n"
+                + "Let's try again, " + username + "!";
+        if (isRightAnswer && step == ROUND_COUNT - 1) {
+            resultCheckInfo += "\nCongratulations, " + username + "!";
         }
         return resultCheckInfo;
+    }
+
+    private static boolean checkAnswer(String answer, String rightAnswer) {
+        return rightAnswer.equals(answer);
     }
 }

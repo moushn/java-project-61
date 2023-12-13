@@ -8,30 +8,22 @@ public final class ProgressionGame implements Game {
     private static final int MAX_PROGRESSION_LENGTH = 10;
     private static final int MIN_PROGRESSION_LENGTH = 5;
     private static final int PROGRESSION_STEP_COEFFICIENT = 3;
-    private static final String TASK = "What number is missing in the progression?";
+    private static final String RULE = "What number is missing in the progression?";
     private static final String HIDDEN_ELEMENT = "..";
-    private int guessedElement;
 
     @Override
-    public String getTask() {
-        return TASK;
+    public String getRule() {
+        return RULE;
     }
 
-    public String getQuestion() {
+    @Override
+    public RoundData generateRound() {
         Random random = new Random();
         int[] progression = generateProgression();
         int guessedIndex = random.nextInt(progression.length - 1) + 1;
-        guessedElement = progression[guessedIndex];
-        return castProgressionToQuestion(progression, guessedIndex);
-    }
-
-    public CheckAnswerResult postAnswer(String answer) {
-        boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), guessedElement);
-        return new CheckAnswerResult(String.valueOf(guessedElement), isRightAnswer);
-    }
-
-    private boolean checkAnswer(int answer, int rightAnswer) {
-        return rightAnswer == answer;
+        int guessedElement = progression[guessedIndex];
+        String question = castProgressionToQuestion(progression, guessedIndex);
+        return new RoundData(question, String.valueOf(guessedElement));
     }
 
     private int[] generateProgression() {

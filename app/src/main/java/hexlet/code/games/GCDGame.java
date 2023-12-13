@@ -4,26 +4,21 @@ import java.util.Random;
 
 public final class GCDGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
-    private static final String TASK = "Find the greatest common divisor of given numbers.";
-    private int guessedNumber1;
-    private int guessedNumber2;
+    private static final String RULE = "Find the greatest common divisor of given numbers.";
 
     @Override
-    public String getTask() {
-        return TASK;
+    public String getRule() {
+        return RULE;
     }
 
-    public String getQuestion() {
+    @Override
+    public RoundData generateRound() {
         Random random = new Random();
-        guessedNumber1 = random.nextInt(MAX_NUMBER_GUESS);
-        guessedNumber2 = random.nextInt(MAX_NUMBER_GUESS);
-        return guessedNumber1 + " " + guessedNumber2;
-    }
-
-    public CheckAnswerResult postAnswer(String answer) {
+        int guessedNumber1 = random.nextInt(MAX_NUMBER_GUESS);
+        int guessedNumber2 = random.nextInt(MAX_NUMBER_GUESS);
         int rightAnswer = getRightAnswer(guessedNumber1, guessedNumber2);
-        boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), rightAnswer);
-        return new CheckAnswerResult(String.valueOf(rightAnswer), isRightAnswer);
+        String question = guessedNumber1 + " " + guessedNumber2;
+        return new RoundData(question, String.valueOf(rightAnswer));
     }
 
     private int getRightAnswer(int number1, int number2) {
@@ -36,9 +31,5 @@ public final class GCDGame implements Game {
             min = gcd;
         } while (gcd != 0);
         return max;
-    }
-
-    private boolean checkAnswer(int answer, int rightAnswer) {
-        return rightAnswer == answer;
     }
 }

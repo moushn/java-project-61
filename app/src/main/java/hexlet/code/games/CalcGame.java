@@ -5,37 +5,28 @@ import java.util.Random;
 public final class CalcGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
     private static final int GUESSES_OPERATORS_COUNT = 2;
-    private static final String TASK = "What is the result of the expression?";
-    private int guessedNumber1;
-    private int guessedNumber2;
-    private String guessedOperator;
+    private static final String RULE = "What is the result of the expression?";
 
     @Override
-    public String getTask() {
-        return TASK;
+    public String getRule() {
+        return RULE;
     }
 
-    public String getQuestion() {
+    @Override
+    public RoundData generateRound() {
+        String question;
         Random random = new Random();
-        guessedNumber1 = random.nextInt(MAX_NUMBER_GUESS);
-        guessedNumber2 = random.nextInt(MAX_NUMBER_GUESS);
-        guessedOperator = random.nextInt(GUESSES_OPERATORS_COUNT) == 0 ? "-" : "+";
-        return guessedNumber1 + " " + (guessedOperator) + " " + guessedNumber2;
-    }
-
-    public CheckAnswerResult postAnswer(String answer) {
+        int guessedNumber1 = random.nextInt(MAX_NUMBER_GUESS);
+        int guessedNumber2 = random.nextInt(MAX_NUMBER_GUESS);
+        String guessedOperator = random.nextInt(GUESSES_OPERATORS_COUNT) == 0 ? "-" : "+";
         int rightAnswer = getRightAnswer(guessedNumber1, guessedNumber2, guessedOperator);
-        boolean isRightAnswer = checkAnswer(Integer.parseInt(answer), rightAnswer);
-        return new CheckAnswerResult(String.valueOf(rightAnswer), isRightAnswer);
+        question = guessedNumber1 + " " + (guessedOperator) + " " + guessedNumber2;
+        return new RoundData(question, String.valueOf(rightAnswer));
     }
 
     private int getRightAnswer(int number1, int number2, String operator) {
         return operator.equals("-")
                 ? number1 - number2
                 : number1 + number2;
-    }
-
-    private boolean checkAnswer(int answer, int rightAnswer) {
-        return rightAnswer == answer;
     }
 }

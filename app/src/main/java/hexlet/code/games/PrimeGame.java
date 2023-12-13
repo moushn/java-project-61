@@ -9,35 +9,24 @@ public final class PrimeGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
     private static final String YES_ANSWER = "yes";
     private static final String NO_ANSWER = "no";
-    private static final String TASK = "Answer '" + YES_ANSWER
+    private static final String RULE = "Answer '" + YES_ANSWER
             + "' if given number is prime. Otherwise answer '"
             + NO_ANSWER + "'.";
-    private int guessedNumber;
 
     @Override
-    public String getTask() {
-        return TASK;
+    public String getRule() {
+        return RULE;
     }
 
     @Override
-    public String getQuestion() {
+    public RoundData generateRound() {
         Random random = new Random();
-        guessedNumber = random.nextInt(MAX_NUMBER_GUESS);
-        return String.valueOf(guessedNumber);
-    }
-
-    @Override
-    public CheckAnswerResult postAnswer(String answer) {
+        int guessedNumber = random.nextInt(MAX_NUMBER_GUESS);
         String rightAnswer = getRightAnswer(guessedNumber);
-        boolean isRightAnswer = checkAnswer(answer, rightAnswer);
-        return new CheckAnswerResult(rightAnswer, isRightAnswer);
+        return new RoundData(String.valueOf(guessedNumber), rightAnswer);
     }
 
     private String getRightAnswer(int number) {
         return BigInteger.valueOf(number).isProbablePrime(1) ? YES_ANSWER : NO_ANSWER;
-    }
-
-    private boolean checkAnswer(String answer, String rightAnswer) {
-        return rightAnswer.equals(answer);
     }
 }
