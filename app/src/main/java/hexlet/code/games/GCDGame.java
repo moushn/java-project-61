@@ -13,8 +13,8 @@ public final class GCDGame implements Game {
 
     @Override
     public RoundData generateRound() {
-        int guessedNumber1 = Utils.getRandomNumber(MAX_NUMBER_GUESS);
-        int guessedNumber2 = Utils.getRandomNumber(MAX_NUMBER_GUESS);
+        int guessedNumber1 = Utils.getRandomNumber(1, MAX_NUMBER_GUESS);
+        int guessedNumber2 = Utils.getRandomNumber(1, MAX_NUMBER_GUESS);
         int rightAnswer = calculateGCD(guessedNumber1, guessedNumber2);
         String question = guessedNumber1 + " " + guessedNumber2;
         return new RoundData(question, String.valueOf(rightAnswer));
