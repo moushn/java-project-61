@@ -4,7 +4,7 @@ import hexlet.code.Utils;
 
 public final class CalcGame implements Game {
     private static final int MAX_NUMBER_GUESS = 100;
-    private static final int GUESSES_OPERATORS_COUNT = 4;
+    private static final int GUESSES_OPERATORS_COUNT = 3;
     private static final String RULE = "What is the result of the expression?";
 
     @Override
@@ -21,7 +21,6 @@ public final class CalcGame implements Game {
         guessedOperator = switch (Utils.getRandomNumber(GUESSES_OPERATORS_COUNT)) {
             case 0 -> "-";
             case 1 -> "+";
-            case 2 -> "/";
             default -> "*";
         };
         int rightAnswer = calculate(guessedNumber1, guessedNumber2, guessedOperator);
@@ -33,7 +32,6 @@ public final class CalcGame implements Game {
         return switch (operator) {
             case "-" -> number1 - number2;
             case "+" -> number1 + number2;
-            case "/" -> number1 / number2;
             default -> number1 * number2;
         };
     }
