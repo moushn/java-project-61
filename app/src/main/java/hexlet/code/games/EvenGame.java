@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Utils;
 
 public final class EvenGame implements Game {
 
@@ -18,13 +18,12 @@ public final class EvenGame implements Game {
 
     @Override
     public RoundData generateRound() {
-        Random random = new Random();
-        int guessedNumber = random.nextInt(MAX_NUMBER_GUESS);
-        String rightAnswer = getRightAnswer(guessedNumber);
+        int guessedNumber = Utils.getRandomNumber(MAX_NUMBER_GUESS);
+        String rightAnswer = isEven(guessedNumber) ? YES_ANSWER : NO_ANSWER;
         return new RoundData(String.valueOf(guessedNumber), rightAnswer);
     }
 
-    private String getRightAnswer(int number) {
-        return number % 2 == 0 ? YES_ANSWER : NO_ANSWER;
+    private boolean isEven(int number) {
+        return number % 2 == 0;
     }
 }

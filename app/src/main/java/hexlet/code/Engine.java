@@ -14,22 +14,25 @@ public class Engine {
         RoundData roundData;
         Scanner scanner = new Scanner(System.in);
 
-        String username = welcome();
+        String username = greet();
         System.out.println(game.getRule());
         for (int i = 0; i < ROUND_COUNT; i += 1) {
             roundData = game.generateRound();
             System.out.println("Question: " + roundData.question());
             System.out.print("Your answer: ");
             answer = scanner.next();
-            result = checkAnswer(answer, roundData.rightAnswer());
-            System.out.println(dialogSupporter(answer, roundData.rightAnswer(), result, username, i));
+            result = roundData.rightAnswer().equals(answer);
             if (!result) {
-                break;
+                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '"
+                        + roundData.rightAnswer() + "'.\n" + "Let's try again, " + username + "!");
+                return;
             }
+            System.out.println("Correct!");
         }
+        System.out.println("Congratulations, " + username + "!");
     }
 
-    private static String welcome() {
+    private static String greet() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the Brain Games!");
@@ -37,25 +40,5 @@ public class Engine {
         String username = scanner.next();
         System.out.println("Hello, " + username + "!");
         return username;
-    }
-
-    private static String dialogSupporter(String answer,
-                                          String rightAnswer,
-                                          boolean isRightAnswer,
-                                          String username,
-                                          int step) {
-        String resultCheckInfo = isRightAnswer
-                ? "Correct!"
-                : "'" + answer + "' is wrong answer ;(. Correct answer was '"
-                + rightAnswer + "'.\n"
-                + "Let's try again, " + username + "!";
-        if (isRightAnswer && step == ROUND_COUNT - 1) {
-            resultCheckInfo += "\nCongratulations, " + username + "!";
-        }
-        return resultCheckInfo;
-    }
-
-    private static boolean checkAnswer(String answer, String rightAnswer) {
-        return rightAnswer.equals(answer);
     }
 }
