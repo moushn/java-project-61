@@ -2,8 +2,6 @@ package hexlet.code.games;
 
 import hexlet.code.Utils;
 
-import java.util.StringJoiner;
-
 public final class ProgressionGame implements Game {
     private static final int MAX_FIRST_NUM = 20;
     private static final int MAX_PROGRESSION_LENGTH = 10;
@@ -40,14 +38,7 @@ public final class ProgressionGame implements Game {
     }
 
     private String castProgressionToQuestion(String[] progression, int index) {
-        StringJoiner accum = new StringJoiner(" ");
-        for (int i = 0; i < progression.length; i += 1) {
-            if (i != index) {
-                accum.add(progression[i]);
-            } else {
-                accum.add(HIDDEN_ELEMENT);
-            }
-        }
-        return accum.toString();
+        progression[index] = HIDDEN_ELEMENT;
+        return String.join(" ", progression);
     }
 }
